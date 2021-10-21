@@ -63,9 +63,12 @@ public class EncriptadorService {
     private List<ObsidiamAccount> encryptAllObsidiamAccount() throws Exception{
         List<ObsidiamAccount> list = obsidiamAccountRepository.findAll();
         for (ObsidiamAccount obj: list){
-            //obj.setAccount(AES256Helper.decrypt(obj.getAccount()));
-            obj.setAccount(AES256Helper.encrypt(obj.getAccount()));
-            obsidiamAccountRepository.save(obj);
+            try{
+                obj.setAccount(AES256Helper.encrypt(obj.getAccount()));
+                obsidiamAccountRepository.save(obj);
+            } catch (Exception e ){
+                log.info("Error al guardar el objeto con id {}", obj.getId());
+            }
         }
         return list;
     }
@@ -73,12 +76,15 @@ public class EncriptadorService {
     private List<ObsidiamInformation> encryptAllObsidiamInformation() throws Exception{
         List<ObsidiamInformation> list = obsidiamInformationRepository.findAll();
         for (ObsidiamInformation obj: list){
-            //obj.setAccount(AES256Helper.decrypt(obj.getAccount()));
-            obj.setAddress(AES256Helper.encrypt(obj.getAddress()));
-            obj.setEmail(AES256Helper.encrypt(obj.getEmail()));
-            obj.setIdJuridico(AES256Helper.encrypt(obj.getIdJuridico()));
-            obj.setName(AES256Helper.encrypt(obj.getName()));
-            obsidiamInformationRepository.save(obj);
+            try{
+                obj.setAddress(AES256Helper.encrypt(obj.getAddress()));
+                obj.setEmail(AES256Helper.encrypt(obj.getEmail()));
+                obj.setIdJuridico(AES256Helper.encrypt(obj.getIdJuridico()));
+                obj.setName(AES256Helper.encrypt(obj.getName()));
+                obsidiamInformationRepository.save(obj);
+            } catch (Exception e ){
+                log.info("Error al guardar el objeto con id {}", obj.getId());
+            }
         }
         return list;
     }
@@ -86,22 +92,28 @@ public class EncriptadorService {
     private List<UserAccount> encryptAllUserAccounts() throws Exception{
         List<UserAccount> list = userAccountRepository.findAll();
         for (UserAccount obj: list){
-            //obj.setAccount(AES256Helper.decrypt(obj.getAccount()));
-            obj.setAccountNumber(AES256Helper.encrypt(obj.getAccountNumber()));
-            obj.setDocNumber(AES256Helper.encrypt(obj.getDocNumber()));
-            obj.setDocType(AES256Helper.encrypt(obj.getDocType()));
-            obj.setFirstName(AES256Helper.encrypt(obj.getFirstName()));
-            obj.setLastName(AES256Helper.encrypt(obj.getLastName()));
-            userAccountRepository.save(obj);
+            try{
+                obj.setAccountNumber(AES256Helper.encrypt(obj.getAccountNumber()));
+                obj.setDocNumber(AES256Helper.encrypt(obj.getDocNumber()));
+                obj.setDocType(AES256Helper.encrypt(obj.getDocType()));
+                obj.setFirstName(AES256Helper.encrypt(obj.getFirstName()));
+                obj.setLastName(AES256Helper.encrypt(obj.getLastName()));
+                userAccountRepository.save(obj);
+            } catch (Exception e ){
+                log.info("Error al guardar el objeto con id {}", obj.getId());
+            }
         }
         return list;
     }
     private List<ObsidiamAccount> decryptAllObsidiamAccount() throws Exception{
         List<ObsidiamAccount> list = obsidiamAccountRepository.findAll();
         for (ObsidiamAccount obj: list){
-            //obj.setAccount(AES256Helper.decrypt(obj.getAccount()));
-            obj.setAccount(AES256Helper.decrypt(obj.getAccount()));
-            obsidiamAccountRepository.save(obj);
+            try{
+                obj.setAccount(AES256Helper.decrypt(obj.getAccount()));
+                obsidiamAccountRepository.save(obj);
+            } catch (Exception e ){
+                log.info("Error al guardar el objeto con id {}", obj.getId());
+            }
         }
         return list;
     }
@@ -110,11 +122,15 @@ public class EncriptadorService {
         List<ObsidiamInformation> list = obsidiamInformationRepository.findAll();
         for (ObsidiamInformation obj: list){
             //obj.setAccount(AES256Helper.decrypt(obj.getAccount()));
-            obj.setAddress(AES256Helper.decrypt(obj.getAddress()));
-            obj.setEmail(AES256Helper.decrypt(obj.getEmail()));
-            obj.setIdJuridico(AES256Helper.decrypt(obj.getIdJuridico()));
-            obj.setName(AES256Helper.decrypt(obj.getName()));
-            obsidiamInformationRepository.save(obj);
+            try{
+                obj.setAddress(AES256Helper.decrypt(obj.getAddress()));
+                obj.setEmail(AES256Helper.decrypt(obj.getEmail()));
+                obj.setIdJuridico(AES256Helper.decrypt(obj.getIdJuridico()));
+                obj.setName(AES256Helper.decrypt(obj.getName()));
+                obsidiamInformationRepository.save(obj);
+            } catch (Exception e ){
+                log.info("Error al guardar el objeto con id {}", obj.getId());
+            }
         }
         return list;
     }
@@ -122,13 +138,16 @@ public class EncriptadorService {
     private List<UserAccount> decryptAllUserAccounts() throws Exception{
         List<UserAccount> list = userAccountRepository.findAll();
         for (UserAccount obj: list){
-            //obj.setAccount(AES256Helper.decrypt(obj.getAccount()));
-            obj.setAccountNumber(AES256Helper.decrypt(obj.getAccountNumber()));
-            obj.setDocNumber(AES256Helper.decrypt(obj.getDocNumber()));
-            obj.setDocType(AES256Helper.decrypt(obj.getDocType()));
-            obj.setFirstName(AES256Helper.decrypt(obj.getFirstName()));
-            obj.setLastName(AES256Helper.decrypt(obj.getLastName()));
-            userAccountRepository.save(obj);
+            try{
+                obj.setAccountNumber(AES256Helper.decrypt(obj.getAccountNumber()));
+                obj.setDocNumber(AES256Helper.decrypt(obj.getDocNumber()));
+                obj.setDocType(AES256Helper.decrypt(obj.getDocType()));
+                obj.setFirstName(AES256Helper.decrypt(obj.getFirstName()));
+                obj.setLastName(AES256Helper.decrypt(obj.getLastName()));
+                userAccountRepository.save(obj);
+            } catch (Exception e ){
+                log.info("Error al guardar el objeto con id {}", obj.getId());
+            }
         }
         return list;
     }
