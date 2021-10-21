@@ -47,7 +47,7 @@ public class EncriptadorService {
         boolean repsuesta = false;
         try{
             int contador = decryptAllObsidiamAccount().size();
-            log.info("Actualizados ObsidiamAccount: " + contador);
+            log.info("Actualizandos ObsidiamAccount: " + contador);
             contador = decryptAllObsidiamInformation().size();
             log.info("Actualizados ObsidiamInformation: " + contador);
             contador = decryptAllUserAccounts().size();
@@ -67,7 +67,8 @@ public class EncriptadorService {
                 obj.setAccount(AES256Helper.encrypt(obj.getAccount()));
                 obsidiamAccountRepository.save(obj);
             } catch (Exception e ){
-                log.info("Error al guardar el objeto con id {}", obj.getId());
+                log.info("Error en encryptAllObsidiamAccount al guardar el objeto Obsidiam Account con id {}", obj.getId());
+                throw new Exception("Error en encryptAllObsidiamAccount al guardar el objeto Obsidiam Account ",e);
             }
         }
         return list;
@@ -83,7 +84,8 @@ public class EncriptadorService {
                 obj.setName(AES256Helper.encrypt(obj.getName()));
                 obsidiamInformationRepository.save(obj);
             } catch (Exception e ){
-                log.info("Error al guardar el objeto con id {}", obj.getId());
+                log.info("Error en encryptAllObsidiamInformation al guardar el objeto con id {}", obj.getId());
+                throw new Exception("Error en encryptAllObsidiamInformation al guardar el objeto ObsidiamInformation",e);
             }
         }
         return list;
@@ -100,7 +102,8 @@ public class EncriptadorService {
                 obj.setLastName(AES256Helper.encrypt(obj.getLastName()));
                 userAccountRepository.save(obj);
             } catch (Exception e ){
-                log.info("Error al guardar el objeto con id {}", obj.getId());
+                log.info("Error en encryptAllUserAccounts al guardar el objeto con id {}", obj.getId());
+                throw new Exception("Error en encryptAllUserAccounts al guardar el objeto UserAccount",e);
             }
         }
         return list;
@@ -112,7 +115,8 @@ public class EncriptadorService {
                 obj.setAccount(AES256Helper.decrypt(obj.getAccount()));
                 obsidiamAccountRepository.save(obj);
             } catch (Exception e ){
-                log.info("Error al guardar el objeto con id {}", obj.getId());
+                log.info("Error al guardar el objeto Obsidiam Account con id {}", obj.getId());
+                //throw new Exception("Error al guardar el objeto Obsidiam Account ObsidiamAccount", e);
             }
         }
         return list;
@@ -129,7 +133,8 @@ public class EncriptadorService {
                 obj.setName(AES256Helper.decrypt(obj.getName()));
                 obsidiamInformationRepository.save(obj);
             } catch (Exception e ){
-                log.info("Error al guardar el objeto con id {}", obj.getId());
+                log.info("Error en decryptAllObsidiamInformation al guardar el objeto con id {}", obj.getId());
+                //throw new Exception("Error en decryptAllObsidiamInformation al guardar el objeto ObsidiamInformation");
             }
         }
         return list;
@@ -146,7 +151,8 @@ public class EncriptadorService {
                 obj.setLastName(AES256Helper.decrypt(obj.getLastName()));
                 userAccountRepository.save(obj);
             } catch (Exception e ){
-                log.info("Error al guardar el objeto con id {}", obj.getId());
+                log.info("Error en decryptAllUserAccounts al guardar el objeto con id {}", obj.getId());
+                //throw new Exception("Error en decryptAllUserAccounts al guardar el objeto UserAccount",e);
             }
         }
         return list;

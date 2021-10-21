@@ -1,6 +1,7 @@
 package com.obsidiam.encriptacampos.controller;
 
 import com.obsidiam.encriptacampos.service.EncriptadorService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -11,7 +12,7 @@ import com.obsidiam.encriptacampos.entities.ObsidiamAccount;
 
 import java.util.List;
 
-
+@Slf4j
 @Controller // This means that this class is a Controller
 @RequestMapping(path="/demo") // This means URL's start with /demo (after Application path)
 public class EncriptadorController {
@@ -28,7 +29,7 @@ public class EncriptadorController {
             encriptadorService.encryptAll();
             repsuesta = true;
         }catch (Exception e){
-            e.printStackTrace();
+            log.error(e.getMessage());
         }
         return repsuesta;
     }
@@ -42,7 +43,7 @@ public class EncriptadorController {
             encriptadorService.decryptAll();
             repsuesta = true;
         }catch (Exception e){
-            e.printStackTrace();
+            log.info(e.getMessage());
         }
         return repsuesta;
     }
