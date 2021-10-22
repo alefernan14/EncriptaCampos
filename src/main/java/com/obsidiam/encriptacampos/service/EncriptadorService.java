@@ -26,7 +26,6 @@ public class EncriptadorService {
 
 
     public boolean encryptAll() throws Exception{
-        // This returns a JSON or XML with the users
         boolean repsuesta = false;
         try{
             int contador = encryptAllObsidiamAccount().size();
@@ -43,7 +42,6 @@ public class EncriptadorService {
     }
 
     public boolean decryptAll() throws Exception{
-        // This returns a JSON or XML with the users
         boolean repsuesta = false;
         try{
             int contador = decryptAllObsidiamAccount().size();
